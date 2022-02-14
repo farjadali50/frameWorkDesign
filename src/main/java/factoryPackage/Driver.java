@@ -78,8 +78,10 @@ public WebDriver setDriver(String browserDetails){
         }
     }
 
-    @Test
-    public void userCanSearch() {
-        driver.get("https://www.google.com");
-}}
+//    @Test
+//    public void userCanSearch() {
+//        driver.get("https://www.google.com");
+//}
+
+}
 
