@@ -1,7 +1,9 @@
 package factoryPackage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -46,8 +48,9 @@ public WebDriver setDriver(String browserDetails){
         }
     }
 */
-                                  // exmaple 2
-WebDriver driver;
+    // exmaple 2
+    WebDriver driver;
+
     @Before
     public void setUp() {
         String currentBrowser = System.getProperty("selenide.browser", "firefox");
@@ -57,7 +60,7 @@ WebDriver driver;
         } else if ("firefox".equals(currentBrowser)) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
-        }  else if ("safari".equals(currentBrowser)) {
+        } else if ("safari".equals(currentBrowser)) {
             driver = new SafariDriver();
         } else if ("edge".equals(currentBrowser)) {
             WebDriverManager.edgedriver().setup();
@@ -66,6 +69,17 @@ WebDriver driver;
             WebDriverManager.iedriver().setup();
             driver = new InternetExplorerDriver();
         }
-}}
+    }
 
+    @After
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void userCanSearch() {
+        driver.get("https://www.google.com");
+}}
 
